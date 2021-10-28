@@ -8,6 +8,7 @@ command: >-
   --penalty "l2"
 environment: azureml:AzureML-sklearn-0.24-ubuntu18.04-py37-cpu:6
 compute:
-  target: azureml:cpu-cluster
+  target: azureml:customer-demo2
+  # instance_type: big_cpu_sku
 experiment_name: sklearn-mnist-example
 description: Train a scikit-learn LogisticRegression model on the MNSIT dataset.

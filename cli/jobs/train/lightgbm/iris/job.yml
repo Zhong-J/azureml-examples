@@ -11,6 +11,6 @@ inputs:
     mode: mount
 environment: azureml:AzureML-lightgbm-3.2-ubuntu18.04-py37-cpu:8
 compute:
-  target: azureml:cpu-cluster
+  target: azureml:customer-demo
 experiment_name: lightgbm-iris-example
 description: Train a LightGBM model on the Iris dataset.

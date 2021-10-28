@@ -35,7 +35,7 @@ def main(args):
     X_train, X_test, y_train, y_test = process_data(
         args.account_name, args.container_name
     )
-
+    print(X_train)
     # train model
     model = train_model(params, X_train, X_test, y_train, y_test)
 
@@ -72,7 +72,7 @@ def process_data(df, random_state):
 
     # read in data
     files = fs.ls(f"{container_name}/mnist")
-
+    print(files)
     for f in files:
         if "train-images" in f:
             X_train = read_images(gzip.open(fs.open(f)), train_len)
@@ -90,7 +90,7 @@ def process_data(df, random_state):
     # initialize and fit scaler
     scaler = MinMaxScaler()
     scaler.fit(X_train)
-
+    print(1)
     # scale train and test data
     X_train = scaler.transform(X_train)
     X_test = scaler.transform(X_test)
