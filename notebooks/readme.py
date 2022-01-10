@@ -66,7 +66,7 @@ def write_readme(notebook_dirs):
         name = notebook_dir.strip("/")
 
         # build entries for notebook table
-        status = f"[![{name}](https://github.com/Azure/azureml-examples/workflows/notebooks-{name}/badge.svg)](https://github.com/Azure/azureml-examples/actions/workflows/notebooks-{name}.yml)"
+        status = f"[![{name}](https://github.com/Azure/azureml-examples/workflows/notebooks-{name}/badge.svg?branch=main)](https://github.com/Azure/azureml-examples/actions/workflows/notebooks-{name}.yml)"
 
         # read description if given in README
         description = "*no description*"
@@ -147,7 +147,7 @@ def write_notebook_workflow_sequential(notebook_dir):
     workflow_yaml = f"""name: notebooks-{notebook_dir}
 on:
   schedule:
-    - cron: "0 0/2 * * *"
+    - cron: "0 */8 * * *"
   pull_request:
     branches:
       - main
@@ -165,14 +165,22 @@ jobs:
       uses: actions/setup-python@v2
       with: 
         python-version: "3.8"
+    - name: Run Install packages
+      run: |
+         chmod +x ./scripts/install-packages.sh
+         ./scripts/install-packages.sh
+      shell: bash
     - name: pip install notebook reqs
       run: pip install -r notebooks/dev-requirements.txt
     - name: azure login
       uses: azure/login@v1
       with:
         creds: {creds}
-    - name: install azmlcli
-      run: az extension add -n azure-cli-ml -y
+    - name: Run update-azure-extensions
+      run: |
+         chmod +x ./scripts/update-azure-extensions.sh
+         ./scripts/update-azure-extensions.sh
+      shell: bash
     - name: attach to workspace
       run: az ml folder attach -w main-python-sdk -g azureml-examples-rg"""
 
@@ -197,7 +205,7 @@ def write_notebook_workflow_parallel(notebook_dir):
     workflow_yaml = f"""name: notebooks-{notebook_dir}
 on:
   schedule:
-    - cron: "0 0/2 * * *"
+    - cron: "0 */8 * * *"
   pull_request:
     branches:
       - main
@@ -219,14 +227,22 @@ jobs:
       uses: actions/setup-python@v2
       with: 
         python-version: "3.8"
+    - name: Run Install packages
+      run: |
+         chmod +x ./scripts/install-packages.sh
+         ./scripts/install-packages.sh
+      shell: bash
     - name: pip install notebook reqs
       run: pip install -r notebooks/dev-requirements.txt
     - name: azure login
       uses: azure/login@v1
       with:
         creds: {creds}
-    - name: install azmlcli
-      run: az extension add -n azure-cli-ml -y
+    - name: Run update-azure-extensions
+      run: |
+         chmod +x ./scripts/update-azure-extensions.sh
+         ./scripts/update-azure-extensions.sh
+      shell: bash
     - name: attach to workspace
       run: az ml folder attach -w main-python-sdk -g azureml-examples-rg
     - name: run {matrix_notebook}

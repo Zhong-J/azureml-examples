@@ -1,3 +1,12 @@
+---
+page_type: sample
+languages:
+- python
+products:
+- azure-machine-learning
+description: Tutorial showing how to solve a complex machine learning time series forecasting problems at scale by using Azure Automated ML and Hierarchical time series accelerator.
+---
+
 ## Microsoft Solution Accelerator: Hierachical Time Series Forecasting
 
 In most applications, customers have a need to understand their forecasts at a macro and micro level of the business. Whether that be predicting sales of products at different geographic locations, or understanding the expected workforce demand for different organizations at a company, the ability to train a machine learning model to intelligently forecast on hierarchy data is essential.
@@ -15,11 +24,11 @@ This business pattern is common across a wide variety of industries and applicab
 
 A hierarchical time series is a structure in which each of the unique series are arranged into a hierarchy based on dimensions such as geography, or product type. The table below shows an example of data whose unique attributes form a hierarchy. Our hierarchy is defined by the `product type` such as headphones or tablets, the `product category` which splits product types into accessories and devices, and the `region` the products are sold in. The table below demonstrates the first input of each unique series in the hierarchy.
 
-![data-table](/media/data-table.png)
+![data-table](./media/data-table.png)
 
 To further visualize this, the leaf levels of the hierarchy contain all the time series with unique combinations of attribute values. Each higher level in the hierarchy will consider one less dimension for defining the time series and will aggregate each set of `child nodes` from the lower level into a `parent node`.
 
-![hierachy-sample](/media/hierarchy-sample-ms.PNG)
+![hierachy-sample](./media/hierarchy-sample-ms.PNG)
 
 > **Note:** If no unique root level exists in the data, Automated Machine Learning will create a node `automl_top_level` for users to train or forecasts totals.
 
@@ -31,13 +40,13 @@ A basic understanding of Azure Machine Learning and hierarchical time series con
 
 1. [Azure Machine Learning Overview](https://azure.microsoft.com/services/machine-learning/)
 2. [Azure Machine Learning Tutorials](https://docs.microsoft.com/azure/machine-learning/tutorial-1st-experiment-sdk-setup)
-3. [Azure Machine Learning Sample Notebooks on Github](https://github.com/Azure/MachineLearningNotebooks)
+3. [Azure Machine Learning Sample Notebooks on Github](https://github.com/Azure/azureml-examples/)
 4. [Forecasting: Principles and Practice, Hierarchical time series](https://otexts.com/fpp2/hts.html)
 
 ## Getting started
 
-### 1. Set up the environment
-Please follow the instructions in EnvironmentSetup.md to create a Compute Instance and clone the git repo to your workspace.
+### 1. Set up the Compute Instance
+Please create a [Compute Instance](https://docs.microsoft.com/en-us/azure/machine-learning/concept-compute-instance#create) and clone the git repo to your workspace.
 
 ### 2. Run the Notebook
 
@@ -45,10 +54,10 @@ Once your environment is set up, go to JupyterLab and run the notebook auto-ml-h
 
 | Notebook       | Description                                |
 |----------------|--------------------------------------------|
-| `AutoML-Hierarchical-TimeSeries.ipynb`|Creates a pipeline to train machine learning models for the defined hierarchy and forecast at the desired hierarchy level using Automated ML. |
+| `auto-ml-forecasting-hierarchical-timeseries.ipynb`|Creates a pipeline to train machine learning models for the defined hierarchy and forecast at the desired hierarchy level using Automated ML. |
 
 
-![Work Flow](/media/workflow.PNG)
+![Work Flow](./media/workflow.PNG)
 
 ## Key Concepts
 
