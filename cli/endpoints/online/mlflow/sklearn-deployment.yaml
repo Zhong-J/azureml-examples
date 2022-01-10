@@ -1,10 +1,11 @@
 $schema: https://azuremlschemas.azureedge.net/latest/managedOnlineDeployment.schema.json
-name: sklearn-deployment
-endpoint_name: my-endpoint
+name: sklearn-deploymen
+type: kubernetes
+endpoint_name: my-endpoint2
 model:
   name: sample-mlflow-sklearn-model
   version: 1
   local_path: sklearn-diabetes/model
   model_format: mlflow
-instance_type: Standard_F2s_v2
+instance_type: myinstancetypename
 instance_count: 1

@@ -1,3 +1,4 @@
 $schema: https://azuremlschemas.azureedge.net/latest/managedOnlineEndpoint.schema.json
-name: my-endpoint
+name: my-endpoint2
 auth_mode: key
+compute: azureml:doris-gpu-arc
